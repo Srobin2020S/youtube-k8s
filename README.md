@@ -1,12 +1,16 @@
 # Материалы для моих видео в Youtube
 
+> *Фокнул репо - поставь звезду. Звезды зажигаются не просто так*
+
 * **[K8s step by step](k8s-step-by-step)** - установка небольшого кластера шаг за шагом.
   * **[Kubernetes offline installation by kubespray](k8s-step-by-step/07-starter)**
   * **[kubeadm](kubeadm)** - управление кластером при помощи kubeadm.
+  * **[Volumes](volumes)** - Про volumes в kubernetes.
 * **[Helm](helm)** - всякое про Helm
 * **[Net](net)** - Про сеть в kubernetes.
   * **[Network Polices](net/04-NetworkPolicies)** - Встроенный firewall.
   * **[Network Polices calico](net/05-NetworkPolicy-calico)** - Реализация от проекта Calico.
+  * **[Gateway API](gatewayapi)**.
 * **[ArgoCD](argocd/README.md)** - приложение для CD в k8s.
 * **[Nexus](nexus)** - хороший пример для объяснения зачем нужен StatefulSet.
 Начало серии видео по devops инструментам в кубернетес.
@@ -24,6 +28,7 @@ Nexus внутри kubernetes, делаем свой docker registry.
 дополнительных плюшек.
 * **[Keycloak](keycloak/README.md)** - кластер Keycloak.
   * [Gatekeeper](keycloak/gatekeeper/README.md) - ограничение доступа к приложениям.
+* **[Kafka](kafka)** - Kafka всякое, разное.
 * **[Mino](minio/README.md)** - установка minio в k8s. Версия под мой [миникластер](k8s-step-by-step/00-planning/README.md).
 * **[Подстановка данных из Secret](keycloak/gatekeeper/manifests-v3)** - подстановка данных из Secret в 
 конфигурационный файл приложения.
@@ -34,6 +39,8 @@ Nexus внутри kubernetes, делаем свой docker registry.
   * **[Local Path Provisioner](base/local-path-provisioner)** - Доступ к локальным 
     дискам кластера при помощи Local Path Provisioner.
   * **[Longhorn](longhorn)** - Highly available persistent storage for Kubernetes.
+  * **[OpenLDAP](openldap)** - OpenLDAP.
+  * **[Kyverno](kyverno)** - Безопасность.
 * **[Hashicorp vault](vault)**
 * **Observability**
   * **[Мониторинг](monitoring)**
@@ -43,3 +50,4 @@ Nexus внутри kubernetes, делаем свой docker registry.
   * **[Трейсинг](tracing)** - Jaeger, Open telemetry, Opensearch Observability.
 * **k3s**
   * [Установка](k3s)
+  * [Среда разработки на базе k3s](Utils/k3s-dev/README.md)

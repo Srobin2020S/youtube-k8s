@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+spec:
+  destination:
+    name: ''
+    namespace: traefik
+    server: https://kubernetes.default.svc
+  source:
+    path: ''
+    repoURL: https://traefik.github.io/charts
+    targetRevision: 33.2.1
+    chart: traefik
+    helm:
+      values: |-
+        ingressClass:
+          enabled: false
+        
+        gatewayClass:
+          enabled: true
+          # По умолчанию "traefik"
+          name: ""
+
+        providers:
+          kubernetesGateway:
+            enabled: true
+            experimentalChannel: true
+        
+        ports:
+          ssh:
+            port: 3000
+            expose:
+              default: true
+            exposedPort: 3000
+            protocol: TCP
+        
+        gateway:
+          enabled: false
+
+        logs:
+          general:
+            format: json
+            level: "DEBUG"
+            noColor: true
+          access:
+            enabled: true
+            format: json
+
+  sources: []
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - ServerSideApply=true
+      - CreateNamespace=true

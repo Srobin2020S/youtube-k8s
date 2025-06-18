@@ -1,0 +1,57 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-volume
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: nginx
+    version: "1.27.1"
+  ports:
+  - port: 8080
+    targetPort: 80
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: sample-volume
+  namespace: default
+  labels:
+    app: &app nginx
+    version: &version 1.27.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: *app
+      version: *version
+  template:
+    metadata:
+      labels:
+        app: *app
+        version: *version
+    spec:
+      volumes:
+      - name: nginx-persistent-storage
+        image: 
+          reference: registry-cl.kryukov.local/library/files:1.0.0
+          pullPolicy: IfNotPresent
+      containers:
+      - name: nginx
+        image: registry-cl.kryukov.local/library/nginx:1.27.1
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-persistent-storage
+          mountPath: /usr/share/nginx
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          
